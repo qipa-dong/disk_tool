@@ -17,3 +17,13 @@ E:\自编程序\代码、源文件\磁盘编辑工具\磁盘编辑工具\obj\Deb
 E:\自编程序\代码、源文件\磁盘编辑工具\磁盘编辑工具\obj\Debug\磁盘编辑工具.csproj.GenerateResource.Cache
 E:\自编程序\代码、源文件\磁盘编辑工具\磁盘编辑工具\obj\Debug\磁盘编辑工具.csprojAssemblyReference.cache
 E:\自编程序\代码、源文件\磁盘编辑工具\磁盘编辑工具\obj\Debug\磁盘编辑工具.csproj.CoreCompileInputs.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\bin\Debug\磁盘编辑工具.exe.config
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\bin\Debug\磁盘编辑工具.exe
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\bin\Debug\磁盘编辑工具.pdb
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csprojAssemblyReference.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.Form1.resources
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.Properties.Resources.resources
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csproj.GenerateResource.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csproj.CoreCompileInputs.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.exe
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.pdb
