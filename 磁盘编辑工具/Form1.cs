@@ -145,6 +145,10 @@ namespace 磁盘编辑工具
             }
         }
 
+		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+
+		}
 	}
 
 	
