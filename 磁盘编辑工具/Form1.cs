@@ -26,11 +26,6 @@ namespace 磁盘编辑工具
 			Get_info();
 		}
 
-		private void label1_Click(object sender, EventArgs e)
-		{
-
-		}
-
 		private void button2_Click(object sender, EventArgs e)
 		{
 			//打开文件
@@ -90,17 +85,23 @@ namespace 磁盘编辑工具
 
 		private void Get_info()
 		{
-			long lsum,ldr;
-			StringBuilder mStringBuilder = new StringBuilder();
+			long lsum, ldr;
+			//StringBuilder mStringBuilder = new StringBuilder();
+			label6.Text += "\r\n";
 			foreach (DriveInfo drive in DriveInfo.GetDrives())
 			{
 				//判断是否是固定磁盘  
-				if (drive.DriveType == DriveType.Removable)
+				if (drive.DriveType == DriveType.Fixed)
 				{
-                    //comboBox1.Items.Add(drive.Name);//添加盘符
-					lsum = drive.TotalSize / 1024;//KB,磁盘总大小
-					ldr = drive.TotalFreeSpace / 1024;//剩余大小
-                    label6.Text += "\n\r" + drive.Name + ": 总空间=" + lsum.ToString() + " 剩余空间=" + ldr.ToString();
+					lsum = drive.TotalSize / 1024 / 1024;//MB,磁盘总大小
+					ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
+					label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
+				}
+				else if (drive.DriveType == DriveType.Removable)
+				{
+					lsum = drive.TotalSize / 1024 / 1024;//MB,磁盘总大小
+					ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
+					label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
 				}
 			}
 		}
@@ -134,7 +135,7 @@ namespace 磁盘编辑工具
         protected override void OnClosing(CancelEventArgs e)
         {
             //退出提示，真的要退出，才允许退出 
-            if (MessageBox.Show(this, "你真的要退出吗？", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(this, "是否退出？", "提示信息", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 e.Cancel = false;//Cancel为false，说明不取消窗口关闭操作，所以窗口关闭
             }
