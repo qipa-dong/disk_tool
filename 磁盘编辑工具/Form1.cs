@@ -26,7 +26,7 @@ namespace 磁盘编辑工具
 			Get_info();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Button2_Click(object sender, EventArgs e)
 		{
 			//打开文件
             
@@ -52,7 +52,7 @@ namespace 磁盘编辑工具
 		}
 
         //向磁盘写入数据
-		private void button3_Click(object sender, EventArgs e)
+		private void Button3_Click(object sender, EventArgs e)
 		{
 			//写入磁盘
             //long filelen = 0;//文件长度
@@ -165,6 +165,27 @@ namespace 磁盘编辑工具
 		{
 
 		}
+
+		private void Button4_Click(object sender, EventArgs e)
+		{
+			listView1.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
+
+			ListViewItem lvi = new ListViewItem();
+
+			lvi.ImageIndex = 1;     //通过与imageList绑定，显示imageList中第i项图标
+
+			lvi.Text = "序号" + 1;
+
+			lvi.SubItems.Add("第2列,第" + 1 + "行");
+
+			lvi.SubItems.Add("第3列,第" + 1 + "行");
+
+			listView1.Items.Add(lvi);
+
+			listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+		}
+
+		//m = listView1.CheckedItems.Count;//或去选中项
 	}
 
 	
