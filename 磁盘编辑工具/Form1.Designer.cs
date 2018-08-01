@@ -58,24 +58,20 @@
 			this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBox1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
 			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Items.AddRange(new object[] {
-            "G:",
-            "H:",
-            "I:"});
-			this.comboBox1.Location = new System.Drawing.Point(519, 29);
+			this.comboBox1.Location = new System.Drawing.Point(514, 12);
 			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(56, 20);
+			this.comboBox1.Size = new System.Drawing.Size(89, 20);
 			this.comboBox1.TabIndex = 0;
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(582, 28);
+			this.button1.Location = new System.Drawing.Point(514, 38);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 24);
+			this.button1.Size = new System.Drawing.Size(89, 28);
 			this.button1.TabIndex = 1;
 			this.button1.Text = "打开磁盘";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.button1_Click);
+			this.button1.Click += new System.EventHandler(this.Button1_Click);
 			// 
 			// progressBar1
 			// 
@@ -173,9 +169,9 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(519, 68);
+			this.button3.Location = new System.Drawing.Point(514, 106);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(68, 24);
+			this.button3.Size = new System.Drawing.Size(89, 28);
 			this.button3.TabIndex = 13;
 			this.button3.Text = "写入";
 			this.button3.UseVisualStyleBackColor = true;
@@ -184,7 +180,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(517, 245);
+			this.label6.Location = new System.Drawing.Point(456, 201);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(53, 12);
 			this.label6.TabIndex = 14;
@@ -202,11 +198,11 @@
 			this.listView1.GridLines = true;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(485, 127);
+			this.listView1.Size = new System.Drawing.Size(485, 156);
 			this.listView1.TabIndex = 15;
 			this.listView1.UseCompatibleStateImageBehavior = false;
 			this.listView1.View = System.Windows.Forms.View.Details;
-			this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+			this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
 			// 
 			// columnHeader1
 			// 
@@ -239,18 +235,18 @@
 			// 
 			// button4
 			// 
-			this.button4.Location = new System.Drawing.Point(519, 112);
+			this.button4.Location = new System.Drawing.Point(514, 72);
 			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(86, 27);
+			this.button4.Size = new System.Drawing.Size(89, 28);
 			this.button4.TabIndex = 16;
 			this.button4.Text = "添加";
 			this.button4.UseVisualStyleBackColor = true;
 			// 
 			// button5
 			// 
-			this.button5.Location = new System.Drawing.Point(591, 68);
+			this.button5.Location = new System.Drawing.Point(514, 140);
 			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(71, 28);
+			this.button5.Size = new System.Drawing.Size(89, 28);
 			this.button5.TabIndex = 17;
 			this.button5.Text = "停止";
 			this.button5.UseVisualStyleBackColor = true;
@@ -259,7 +255,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(674, 376);
+			this.ClientSize = new System.Drawing.Size(615, 376);
 			this.Controls.Add(this.button5);
 			this.Controls.Add(this.button4);
 			this.Controls.Add(this.listView1);

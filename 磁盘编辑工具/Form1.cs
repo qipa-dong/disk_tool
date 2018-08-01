@@ -22,7 +22,7 @@ namespace 磁盘编辑工具
 		public Form1()
 		{
 			InitializeComponent();
-            comboBox1.SelectedIndex = 0;//设置默认值
+            //comboBox1.SelectedIndex = 0;//设置默认值
 			Get_info();
 		}
 
@@ -85,9 +85,9 @@ namespace 磁盘编辑工具
 
 		private void Get_info()
 		{
-			long lsum, ldr;
-			//StringBuilder mStringBuilder = new StringBuilder();
-			label6.Text += "\r\n";
+			long lsum, ldr; 
+			label6.Text = "磁盘信息\r\n";
+			comboBox1.Items.Clear();
 			foreach (DriveInfo drive in DriveInfo.GetDrives())
 			{
 				//判断是否是固定磁盘  
@@ -97,25 +97,39 @@ namespace 磁盘编辑工具
 					ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
 					label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
 				}
-				else if (drive.DriveType == DriveType.Removable)
+				else if (drive.DriveType == DriveType.Removable)//判断是否是移动磁盘 
 				{
-					lsum = drive.TotalSize / 1024 / 1024;//MB,磁盘总大小
-					ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
-					label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
+					if (drive.IsReady)//磁盘已就绪
+					{
+						lsum = drive.TotalSize / 1024 / 1024;//MB,磁盘总大小
+						ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
+						label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
+					}
+					else
+					{
+						label6.Text += drive.Name + " 未知" + "\r\n";
+						
+					}
 				}
+
+				if (drive.IsReady)//磁盘已就绪
+					comboBox1.Items.Add(drive.Name + drive.VolumeLabel);
+				else
+					comboBox1.Items.Add(drive.Name + "未知");
 			}
+			comboBox1.SelectedIndex = 0;//设置默认值
 		}
 
         //打开磁盘
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            tergetDisk = comboBox1.Text;
+            tergetDisk = comboBox1.Text.Substring(0,2);
             //Get_info();
             if (DiskOpen == false)
             {
                 if (cipan.OpenDisk(tergetDisk))
                 {
-                    button1.Text = "磁盘" + comboBox1.Text;
+                    button1.Text = "磁盘" + comboBox1.Text.Substring(0, 2);
                     DiskOpen = true;
                 }
                 else
@@ -128,7 +142,8 @@ namespace 磁盘编辑工具
                 cipan.Close();
                 button1.Text = "打开磁盘";
                 DiskOpen = false;
-            }
+				Get_info();//关闭磁盘时刷新磁盘信息
+			}
             
         }
 
@@ -146,7 +161,7 @@ namespace 磁盘编辑工具
             }
         }
 
-		private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+		private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
 		{
 
 		}
