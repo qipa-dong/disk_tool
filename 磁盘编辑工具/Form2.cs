@@ -17,34 +17,34 @@ namespace 磁盘编辑工具
 			InitializeComponent();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void Button1_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.OK;
 			this.Close();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void Button2_Click(object sender, EventArgs e)
 		{
 			this.DialogResult = DialogResult.Cancel;
 			this.Close();
 		}
 
-		public string get_FileName()
+		public string Get_FileName()
 		{
 			return textBox1.Text;
 		}
 
-		public string get_FileStart()
+		public string Get_FileStart()
 		{
 			return textBox2.Text;
 		}
 
-		public string get_DiskStart()
+		public string Get_DiskStart()
 		{
 			return textBox3.Text;
 		}
 
-		public string get_DataSize()
+		public string Get_DataSize()
 		{
 			return textBox3.Text;
 		}

@@ -183,10 +183,10 @@ namespace 磁盘编辑工具
 
 			if (testDialog.ShowDialog(this) == DialogResult.OK)//弹出窗口
 			{
-				lvi.SubItems.Add(testDialog.get_FileName());
-				lvi.SubItems.Add(testDialog.get_FileStart());
-				lvi.SubItems.Add(testDialog.get_DiskStart());
-				lvi.SubItems.Add(testDialog.get_DataSize());
+				lvi.SubItems.Add(testDialog.Get_FileName());
+				lvi.SubItems.Add(testDialog.Get_FileStart());
+				lvi.SubItems.Add(testDialog.Get_DiskStart());
+				lvi.SubItems.Add(testDialog.Get_DataSize());
 
 				listView1.Items.Add(lvi);//列表显示数据
 			}
