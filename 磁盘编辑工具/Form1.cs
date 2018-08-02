@@ -23,6 +23,10 @@ namespace 磁盘编辑工具
 		{
 			InitializeComponent();
             //comboBox1.SelectedIndex = 0;//设置默认值
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
 			Get_info();
 		}
 
@@ -168,22 +172,37 @@ namespace 磁盘编辑工具
 
 		private void Button4_Click(object sender, EventArgs e)
 		{
+			Form2 testDialog = new Form2();
 			listView1.BeginUpdate();   //数据更新，UI暂时挂起，直到EndUpdate绘制控件，可以有效避免闪烁并大大提高加载速度
 
 			ListViewItem lvi = new ListViewItem();
 
-			lvi.ImageIndex = 1;     //通过与imageList绑定，显示imageList中第i项图标
+			//lvi.ImageIndex = 1;     //通过与imageList绑定，显示imageList中第i项图标
 
-			lvi.Text = "序号" + 1;
+			lvi.Text = "1";
 
-			lvi.SubItems.Add("第2列,第" + 1 + "行");
+			if (testDialog.ShowDialog(this) == DialogResult.OK)//弹出窗口
+			{
+				lvi.SubItems.Add(testDialog.get_FileName());
+				lvi.SubItems.Add(testDialog.get_FileStart());
+				lvi.SubItems.Add(testDialog.get_DiskStart());
+				lvi.SubItems.Add(testDialog.get_DataSize());
 
-			lvi.SubItems.Add("第3列,第" + 1 + "行");
+				listView1.Items.Add(lvi);//列表显示数据
+			}
+			testDialog.Dispose();
 
-			listView1.Items.Add(lvi);
+			
 
 			listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
+
+
+			
+			
+			
 		}
+
+		
 
 		//m = listView1.CheckedItems.Count;//或去选中项
 	}

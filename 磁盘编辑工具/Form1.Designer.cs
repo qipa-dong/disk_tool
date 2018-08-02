@@ -198,6 +198,7 @@
             this.columnHeader5,
             this.columnHeader6});
 			this.listView1.GridLines = true;
+			this.listView1.LabelEdit = true;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(485, 190);
@@ -209,7 +210,7 @@
 			// columnHeader1
 			// 
 			this.columnHeader1.Text = "序号";
-			this.columnHeader1.Width = 40;
+			this.columnHeader1.Width = 50;
 			// 
 			// columnHeader2
 			// 
@@ -289,7 +290,9 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "Form1";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.Form1_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
