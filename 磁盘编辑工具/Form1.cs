@@ -19,6 +19,7 @@ namespace 磁盘编辑工具
         FileHelper FileBin = new FileHelper();
         private bool DiskOpen = false;//磁盘状态，标志磁盘是否打开
         string tergetDisk = "";//目标磁盘
+		string[] filelisr;
 		public Form1()
 		{
 			InitializeComponent();
@@ -183,10 +184,13 @@ namespace 磁盘编辑工具
 
 			if (testDialog.ShowDialog(this) == DialogResult.OK)//弹出窗口
 			{
-				lvi.SubItems.Add(testDialog.Get_FileName());
-				lvi.SubItems.Add(testDialog.Get_FileStart());
-				lvi.SubItems.Add(testDialog.Get_DiskStart());
-				lvi.SubItems.Add(testDialog.Get_DataSize());
+				//filelisr[1] = testDialog.Get_FileName();
+
+				//lvi.SubItems.Add(testDialog.Get_FileName());
+				//lvi.SubItems.Add(testDialog.Get_FileStart());
+				//lvi.SubItems.Add(testDialog.Get_DiskStart());
+				//lvi.SubItems.Add(testDialog.Get_DataSize());
+				lvi.SubItems.Add(testDialog.in_data.short_name);
 
 				listView1.Items.Add(lvi);//列表显示数据
 			}
@@ -195,11 +199,6 @@ namespace 磁盘编辑工具
 			
 
 			listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
-
-
-			
-			
-			
 		}
 
 		
@@ -207,5 +206,13 @@ namespace 磁盘编辑工具
 		//m = listView1.CheckedItems.Count;//或去选中项
 	}
 
+	public struct listdata
+	{
+		public string full_name;//文件全名（路径）
+		public string short_name;
+		public int file_start;
+		public int disk_start;
+		public int data_size;
+	}
 	
 }
