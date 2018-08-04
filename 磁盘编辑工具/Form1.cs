@@ -19,7 +19,8 @@ namespace 磁盘编辑工具
         FileHelper FileBin = new FileHelper();
         private bool DiskOpen = false;//磁盘状态，标志磁盘是否打开
         string tergetDisk = "";//目标磁盘
-		string[] filelisr;
+		int list_num = 0;
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -180,23 +181,26 @@ namespace 磁盘编辑工具
 
 			//lvi.ImageIndex = 1;     //通过与imageList绑定，显示imageList中第i项图标
 
-			lvi.Text = "1";
+			
 
 			if (testDialog.ShowDialog(this) == DialogResult.OK)//弹出窗口
 			{
-				//filelisr[1] = testDialog.Get_FileName();
+				listdata data = new listdata();
+				data = testDialog.get_data();
 
-				//lvi.SubItems.Add(testDialog.Get_FileName());
-				//lvi.SubItems.Add(testDialog.Get_FileStart());
-				//lvi.SubItems.Add(testDialog.Get_DiskStart());
-				//lvi.SubItems.Add(testDialog.Get_DataSize());
-				lvi.SubItems.Add(testDialog.in_data.short_name);
+				list_num++;
+				lvi.Text = list_num.ToString();
+
+				lvi.SubItems.Add(data.operating);
+				lvi.SubItems.Add(data.short_name);
+				lvi.SubItems.Add(data.file_start.ToString());
+				lvi.SubItems.Add(data.disk_start.ToString());
+				lvi.SubItems.Add(data.data_size.ToString());
+				lvi.SubItems.Add(data.full_name);
 
 				listView1.Items.Add(lvi);//列表显示数据
 			}
 			testDialog.Dispose();
-
-			
 
 			listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
 		}
@@ -209,10 +213,11 @@ namespace 磁盘编辑工具
 	public struct listdata
 	{
 		public string full_name;//文件全名（路径）
-		public string short_name;
-		public int file_start;
-		public int disk_start;
-		public int data_size;
+		public string short_name;//短文件名
+		public string operating;//操作
+		public int file_start;//文件起始地址
+		public int disk_start;//磁盘起始地址
+		public int data_size;//数据大小
 	}
 	
 }

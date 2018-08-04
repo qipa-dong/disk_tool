@@ -16,7 +16,7 @@ namespace 磁盘编辑工具
 	{
 		FileHelper FileBin = new FileHelper();
 		private FileInfo fi ;
-		public listdata in_data;
+		private listdata in_data = new listdata();
 
 		public Form2()
 		{
@@ -25,11 +25,12 @@ namespace 磁盘编辑工具
 
 		private void Button1_Click(object sender, EventArgs e)
 		{
-			in_data.data_size = Convert.ToInt32(textBox4.Text.Substring(2),16);//提取长度并转换为十进制
-			in_data.disk_start = Convert.ToInt32(textBox3.Text.Substring(2), 16);
-			in_data.file_start = Convert.ToInt32(textBox2.Text.Substring(2), 16);
+			in_data.data_size = Convert.ToInt32(numericUpDown3.Value);//提取长度并转换为十进制
+			in_data.disk_start = Convert.ToInt32(numericUpDown2.Value);
+			in_data.file_start = Convert.ToInt32(numericUpDown1.Value);
 			in_data.short_name = fi.Name;
 			in_data.full_name = fi.FullName;
+			in_data.operating = comboBox1.Text;
 
 			this.DialogResult = DialogResult.OK;
 			this.Close();
@@ -41,9 +42,17 @@ namespace 磁盘编辑工具
 			this.Close();
 		}
 
+		public listdata get_data()
+		{
+			return in_data;
+		}
+
 		private void Form2_Load(object sender, EventArgs e)
 		{
 			comboBox1.SelectedIndex = 0;
+			comboBox2.SelectedIndex = 0;
+			comboBox3.SelectedIndex = 0;
+			comboBox4.SelectedIndex = 0;
 
 		}
 
@@ -64,7 +73,7 @@ namespace 磁盘编辑工具
 					fi = new FileInfo(names[0]);
 					textBox1.Text = fi.Name;
 
-					textBox4.Text = "";
+					numericUpDown3.Value = 0;
 				}
 
 			}
@@ -84,8 +93,7 @@ namespace 磁盘编辑工具
 					fi = new FileInfo(names[0]);
 					textBox1.Text = fi.Name;
 
-					textBox4.Text = "0x" + FileBin.filelen(names[0]).ToString("x");
-
+					numericUpDown3.Value = FileBin.filelen(names[0]);
 				}
 			}
 		}
