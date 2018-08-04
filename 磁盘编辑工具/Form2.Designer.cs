@@ -52,7 +52,7 @@
 			// textBox1
 			// 
 			this.textBox1.AllowDrop = true;
-			this.textBox1.Location = new System.Drawing.Point(118, 52);
+			this.textBox1.Location = new System.Drawing.Point(118, 50);
 			this.textBox1.Name = "textBox1";
 			this.textBox1.ReadOnly = true;
 			this.textBox1.Size = new System.Drawing.Size(139, 21);
@@ -140,9 +140,9 @@
 			// 
 			// button3
 			// 
-			this.button3.Location = new System.Drawing.Point(263, 51);
+			this.button3.Location = new System.Drawing.Point(263, 50);
 			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(55, 20);
+			this.button3.Size = new System.Drawing.Size(55, 21);
 			this.button3.TabIndex = 6;
 			this.button3.Text = "文件";
 			this.button3.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@
 			this.comboBox3.Items.AddRange(new object[] {
             "HEX",
             "DEC"});
-			this.comboBox3.Location = new System.Drawing.Point(263, 118);
+			this.comboBox3.Location = new System.Drawing.Point(263, 119);
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(55, 20);
 			this.comboBox3.TabIndex = 8;
@@ -181,7 +181,7 @@
 			this.comboBox4.Items.AddRange(new object[] {
             "HEX",
             "DEC"});
-			this.comboBox4.Location = new System.Drawing.Point(263, 151);
+			this.comboBox4.Location = new System.Drawing.Point(263, 152);
 			this.comboBox4.Name = "comboBox4";
 			this.comboBox4.Size = new System.Drawing.Size(55, 20);
 			this.comboBox4.TabIndex = 9;
@@ -190,7 +190,7 @@
 			// numericUpDown1
 			// 
 			this.numericUpDown1.Hexadecimal = true;
-			this.numericUpDown1.Location = new System.Drawing.Point(118, 86);
+			this.numericUpDown1.Location = new System.Drawing.Point(118, 85);
 			this.numericUpDown1.Maximum = new decimal(new int[] {
             9999999,
             0,

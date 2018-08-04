@@ -182,7 +182,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(451, 237);
+			this.label6.Location = new System.Drawing.Point(444, 237);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(53, 12);
 			this.label6.TabIndex = 14;
@@ -199,8 +199,8 @@
             this.columnHeader4,
             this.columnHeader5,
             this.columnHeader7});
+			this.listView1.FullRowSelect = true;
 			this.listView1.GridLines = true;
-			this.listView1.LabelEdit = true;
 			this.listView1.Location = new System.Drawing.Point(12, 12);
 			this.listView1.Name = "listView1";
 			this.listView1.Size = new System.Drawing.Size(485, 190);
@@ -269,6 +269,7 @@
 			this.button6.TabIndex = 18;
 			this.button6.Text = "移除";
 			this.button6.UseVisualStyleBackColor = true;
+			this.button6.Click += new System.EventHandler(this.Button6_Click);
 			// 
 			// Form1
 			// 

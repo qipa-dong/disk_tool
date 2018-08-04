@@ -34,19 +34,19 @@ namespace 磁盘编辑工具
 				//in_data.full_name = fi.FullName;
 				in_data.operating = comboBox1.Text;
 
-				this.DialogResult = DialogResult.OK;
+				DialogResult = DialogResult.OK;
 			}
 			else
 			{
-				this.DialogResult = DialogResult.Cancel;
+				DialogResult = DialogResult.Cancel;
 			}
-			this.Close();
+			Close();
 		}
 
 		private void Button2_Click(object sender, EventArgs e)
 		{
-			this.DialogResult = DialogResult.Cancel;
-			this.Close();
+			DialogResult = DialogResult.Cancel;
+			Close();
 		}
 
 		public listdata get_data()

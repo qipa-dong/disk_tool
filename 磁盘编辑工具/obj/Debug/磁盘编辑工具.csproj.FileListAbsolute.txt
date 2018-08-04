@@ -11,3 +11,11 @@ D:\software\cmder\tmp_git\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工
 D:\software\cmder\tmp_git\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.exe
 D:\software\cmder\tmp_git\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.pdb
 D:\software\cmder\tmp_git\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csprojResolveAssemblyReference.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\bin\Debug\磁盘编辑工具.exe.config
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\bin\Debug\磁盘编辑工具.exe
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\bin\Debug\磁盘编辑工具.pdb
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csprojAssemblyReference.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.Form2.resources
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csproj.CoreCompileInputs.cache
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.exe
+C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.pdb

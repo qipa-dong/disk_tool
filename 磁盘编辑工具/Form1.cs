@@ -130,7 +130,6 @@ namespace 磁盘编辑工具
         private void Button1_Click(object sender, EventArgs e)
         {
             tergetDisk = comboBox1.Text.Substring(0,2);
-            //Get_info();
             if (DiskOpen == false)
             {
                 if (cipan.OpenDisk(tergetDisk))
@@ -162,8 +161,12 @@ namespace 磁盘编辑工具
             }
             else
             {
-                cipan.Close();//关闭磁盘
-                e.Cancel = true;
+				if (DiskOpen == true)
+				{
+					cipan.Close();//关闭磁盘
+				}
+
+				e.Cancel = true;
             }
         }
 
@@ -205,7 +208,13 @@ namespace 磁盘编辑工具
 			listView1.EndUpdate();  //结束数据处理，UI界面一次性绘制。
 		}
 
-		
+		private void Button6_Click(object sender, EventArgs e)
+		{
+			string data = listView1.FocusedItem.SubItems[1].Text;//获取选中行的第一列的数据
+			string data1 = listView1.Items[0].SubItems[1].Text;//获取第0项第一列的数据
+		}
+
+
 
 		//m = listView1.CheckedItems.Count;//或去选中项
 	}
