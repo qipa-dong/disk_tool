@@ -15,7 +15,7 @@ namespace 磁盘编辑工具
 	public partial class Form2 : Form
 	{
 		FileHelper FileBin = new FileHelper();
-		private FileInfo fi ;
+		//private FileInfo fi;
 		private listdata in_data = new listdata();
 
 		public Form2()
@@ -25,14 +25,21 @@ namespace 磁盘编辑工具
 
 		private void Button1_Click(object sender, EventArgs e)
 		{
-			in_data.data_size = Convert.ToInt32(numericUpDown3.Value);//提取长度并转换为十进制
-			in_data.disk_start = Convert.ToInt32(numericUpDown2.Value);
-			in_data.file_start = Convert.ToInt32(numericUpDown1.Value);
-			in_data.short_name = fi.Name;
-			in_data.full_name = fi.FullName;
-			in_data.operating = comboBox1.Text;
+			if (textBox1.Text != "")
+			{
+				in_data.data_size = Convert.ToInt32(numericUpDown3.Value);//提取长度并转换为十进制
+				in_data.disk_start = Convert.ToInt32(numericUpDown2.Value);
+				in_data.file_start = Convert.ToInt32(numericUpDown1.Value);
+				//in_data.short_name = fi.Name;
+				//in_data.full_name = fi.FullName;
+				in_data.operating = comboBox1.Text;
 
-			this.DialogResult = DialogResult.OK;
+				this.DialogResult = DialogResult.OK;
+			}
+			else
+			{
+				this.DialogResult = DialogResult.Cancel;
+			}
 			this.Close();
 		}
 
@@ -70,8 +77,11 @@ namespace 磁盘编辑工具
 				{
 					string[] names = filesave.FileNames;
 
-					fi = new FileInfo(names[0]);
+					FileInfo fi = new FileInfo(names[0]);
 					textBox1.Text = fi.Name;
+
+					in_data.short_name = fi.Name;
+					in_data.full_name = fi.FullName;
 
 					numericUpDown3.Value = 0;
 				}
@@ -90,12 +100,47 @@ namespace 磁盘编辑工具
 
 					string[] names = fileDialog.FileNames;
 
-					fi = new FileInfo(names[0]);
+					FileInfo fi = new FileInfo(names[0]);
 					textBox1.Text = fi.Name;
+
+					in_data.short_name = fi.Name;
+					in_data.full_name = fi.FullName;
 
 					numericUpDown3.Value = FileBin.filelen(names[0]);
 				}
 			}
+		}
+
+		private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if(comboBox2.Text == "HEX")
+				numericUpDown1.Hexadecimal = true;
+			else
+				numericUpDown1.Hexadecimal = false;
+		}
+
+		private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (comboBox3.Text == "HEX")
+				numericUpDown2.Hexadecimal = true;
+			else
+				numericUpDown2.Hexadecimal = false;
+		}
+
+		private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (comboBox4.Text == "HEX")
+				numericUpDown3.Hexadecimal = true;
+			else
+				numericUpDown3.Hexadecimal = false;
+		}
+
+		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			in_data.short_name = "";
+			in_data.full_name = "";
+			textBox1.Text = "";
+			numericUpDown3.Value = 0;
 		}
 	}
 }

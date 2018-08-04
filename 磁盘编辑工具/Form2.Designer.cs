@@ -54,8 +54,10 @@
 			this.textBox1.AllowDrop = true;
 			this.textBox1.Location = new System.Drawing.Point(118, 52);
 			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
 			this.textBox1.Size = new System.Drawing.Size(139, 21);
 			this.textBox1.TabIndex = 0;
+			this.textBox1.WordWrap = false;
 			// 
 			// label1
 			// 
@@ -134,6 +136,7 @@
 			this.comboBox1.Name = "comboBox1";
 			this.comboBox1.Size = new System.Drawing.Size(139, 20);
 			this.comboBox1.TabIndex = 5;
+			this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
 			// 
 			// button3
 			// 
@@ -156,6 +159,7 @@
 			this.comboBox2.Name = "comboBox2";
 			this.comboBox2.Size = new System.Drawing.Size(55, 20);
 			this.comboBox2.TabIndex = 7;
+			this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
 			// 
 			// comboBox3
 			// 
@@ -168,6 +172,7 @@
 			this.comboBox3.Name = "comboBox3";
 			this.comboBox3.Size = new System.Drawing.Size(55, 20);
 			this.comboBox3.TabIndex = 8;
+			this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
 			// 
 			// comboBox4
 			// 
@@ -180,12 +185,14 @@
 			this.comboBox4.Name = "comboBox4";
 			this.comboBox4.Size = new System.Drawing.Size(55, 20);
 			this.comboBox4.TabIndex = 9;
+			this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
 			// 
 			// numericUpDown1
 			// 
+			this.numericUpDown1.Hexadecimal = true;
 			this.numericUpDown1.Location = new System.Drawing.Point(118, 86);
 			this.numericUpDown1.Maximum = new decimal(new int[] {
-            1000,
+            9999999,
             0,
             0,
             0});
@@ -193,16 +200,17 @@
 			this.numericUpDown1.Size = new System.Drawing.Size(139, 21);
 			this.numericUpDown1.TabIndex = 10;
 			this.numericUpDown1.Value = new decimal(new int[] {
-            400,
+            1024,
             0,
             0,
             0});
 			// 
 			// numericUpDown2
 			// 
+			this.numericUpDown2.Hexadecimal = true;
 			this.numericUpDown2.Location = new System.Drawing.Point(118, 119);
 			this.numericUpDown2.Maximum = new decimal(new int[] {
-            1000,
+            9999999,
             0,
             0,
             0});
@@ -219,7 +227,7 @@
 			// 
 			this.numericUpDown3.Location = new System.Drawing.Point(118, 152);
 			this.numericUpDown3.Maximum = new decimal(new int[] {
-            1000,
+            9999999,
             0,
             0,
             0});
