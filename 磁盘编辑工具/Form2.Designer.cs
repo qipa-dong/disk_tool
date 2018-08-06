@@ -33,7 +33,6 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
 			this.label4 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -44,6 +43,7 @@
 			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
 			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
 			this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+			this.button2 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -95,16 +95,6 @@
 			this.button1.Text = "确定";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.Button1_Click);
-			// 
-			// button2
-			// 
-			this.button2.Location = new System.Drawing.Point(118, 199);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(75, 28);
-			this.button2.TabIndex = 2;
-			this.button2.Text = "取消";
-			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.Button2_Click);
 			// 
 			// label4
 			// 
@@ -235,11 +225,22 @@
 			this.numericUpDown3.Size = new System.Drawing.Size(139, 21);
 			this.numericUpDown3.TabIndex = 12;
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(118, 199);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(75, 28);
+			this.button2.TabIndex = 13;
+			this.button2.Text = "取消";
+			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2_Click);
+			// 
 			// Form2
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(326, 262);
+			this.Controls.Add(this.button2);
 			this.Controls.Add(this.numericUpDown3);
 			this.Controls.Add(this.numericUpDown2);
 			this.Controls.Add(this.numericUpDown1);
@@ -249,7 +250,6 @@
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.comboBox1);
 			this.Controls.Add(this.label4);
-			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
@@ -275,7 +275,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ComboBox comboBox1;
@@ -286,5 +285,6 @@
 		private System.Windows.Forms.NumericUpDown numericUpDown1;
 		private System.Windows.Forms.NumericUpDown numericUpDown2;
 		private System.Windows.Forms.NumericUpDown numericUpDown3;
+		private System.Windows.Forms.Button button2;
 	}
 }

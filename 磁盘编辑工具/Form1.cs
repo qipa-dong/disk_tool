@@ -16,7 +16,7 @@ namespace 磁盘编辑工具
 	public partial class Form1 : Form
 	{
         SDUtils cipan = new SDUtils();
-        FileHelper FileBin = new FileHelper();
+		private FileHelper FileBin = new FileHelper();
         private bool DiskOpen = false;//磁盘状态，标志磁盘是否打开
         string tergetDisk = "";//目标磁盘
 		int list_num = 0;
@@ -32,67 +32,88 @@ namespace 磁盘编辑工具
 			Get_info();
 		}
 
-		private void Button2_Click(object sender, EventArgs e)
-		{
-			//打开文件
+		//private void Button2_Click(object sender, EventArgs e)
+		//{
+		//	//打开文件
             
-			OpenFileDialog fileDialog = new OpenFileDialog();
-			fileDialog.Multiselect = true;
-			fileDialog.Title = "请选择文件";
-			fileDialog.Filter = "二进制文件（*.bin,*img）|*.bin;*img|所有文件(*.*)|*.*";
-			if (fileDialog.ShowDialog() == DialogResult.OK)
-			{
+		//	OpenFileDialog fileDialog = new OpenFileDialog();
+		//	fileDialog.Multiselect = true;
+		//	fileDialog.Title = "请选择文件";
+		//	fileDialog.Filter = "二进制文件（*.bin,*img）|*.bin;*img|所有文件(*.*)|*.*";
+		//	if (fileDialog.ShowDialog() == DialogResult.OK)
+		//	{
                 
-				string[] names = fileDialog.FileNames;
-				textBox4.Text = names[0];//显示文件名
+		//		string[] names = fileDialog.FileNames;
+		//		textBox4.Text = names[0];//显示文件名
                 
-                textBox2.Text ="0x"+ FileBin.filelen(names[0]).ToString("x");
-                //foreach (string file in names)
-                //{
-                //    MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+  //              textBox2.Text ="0x"+ FileBin.filelen(names[0]).ToString("x");
+  //              //foreach (string file in names)
+  //              //{
+  //              //    MessageBox.Show("已选择文件:" + file, "选择文件提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                //}
-                FileInfo fi = new FileInfo(names[0]);
+  //              //}
+  //              FileInfo fi = new FileInfo(names[0]);
                 
-			}
-		}
+		//	}
+		//}
 
         //向磁盘写入数据
 		private void Button3_Click(object sender, EventArgs e)
 		{
+			byte[] WriteByte = new byte[512];
+            string filename = listView1.Items[0].SubItems[6].Text;
+            uint fileStartAddr = Convert.ToUInt32(listView1.Items[0].SubItems[3].Text);
+			uint diskStartAddr = Convert.ToUInt32(listView1.Items[0].SubItems[4].Text);
+            uint filelen = Convert.ToUInt32(listView1.Items[0].SubItems[5].Text);
+
+
 			//写入磁盘
-            //long filelen = 0;//文件长度
-            byte[] WriteByte = new byte[512];
-            string filename =textBox4.Text;
-            uint fileStartAddr = Convert.ToUInt32(textBox3.Text,16);
-            uint diskStartAddr = Convert.ToUInt32(textBox1.Text,16);
-            uint filelen = Convert.ToUInt32(textBox2.Text, 16);
-            if (filelen > 0)
-            {
-                if(MessageBox.Show(this, "确定要写入文件？此操作无法撤销！", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    for (uint SurplusLen = 0; SurplusLen < filelen; SurplusLen += 512)
-                    {
-                        WriteByte = FileBin.BinRead(filename, SurplusLen + fileStartAddr, 512);//读取数据
-                        cipan.WriteSector(WriteByte, SurplusLen / 512 + diskStartAddr);//将数据写入流
-                        cipan.Refresh();//将当前流中的数据写入磁盘
-                        progressBar1.Step = (int)(SurplusLen * 100 / filelen );
-                        progressBar1.PerformStep();
-                    }
-                    MessageBox.Show(this, "文件写入完成", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                }
-            }
-            else
-            {
-                MessageBox.Show(this,"文件无内容或不存在","提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                return;
-            } 
+			if (listView1.Items[0].SubItems[1].Text == "写入" ||
+				listView1.Items[0].SubItems[1].Text == "擦除")
+			{
+				if (filelen > 0)
+				{
+					if (MessageBox.Show(this, "确定要写入文件？此操作无法撤销！", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+					{
+						for (uint SurplusLen = 0; SurplusLen < filelen; SurplusLen += 512)
+						{
+							if(listView1.Items[0].SubItems[1].Text == "写入")
+							{
+								WriteByte = FileBin.BinRead(filename, SurplusLen + fileStartAddr, 512);//读取数据
+							}
+							else
+							{
+								
+							}
+
+							cipan.WriteSector(WriteByte, SurplusLen / 512 + diskStartAddr);//将数据写入流
+							cipan.Refresh();//将当前流中的数据写入磁盘
+							progressBar1.Step = (int)(SurplusLen * 100 / filelen);
+							progressBar1.PerformStep();
+						}
+						MessageBox.Show(this, "文件写入完成", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
+					}
+				}
+				else
+				{
+					MessageBox.Show(this, "文件无内容或不存在", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
+					return;
+				}
+			}
+			else if (listView1.Items[0].SubItems[1].Text == "读取")
+			{
+
+			}
+
+
+
+
 		}
 
 		private void Get_info()
 		{
 			long lsum, ldr; 
-			label6.Text = "磁盘信息\r\n";
+			textBox1.Text = "磁盘信息\r\n";
 			comboBox1.Items.Clear();
 			foreach (DriveInfo drive in DriveInfo.GetDrives())
 			{
@@ -101,7 +122,7 @@ namespace 磁盘编辑工具
 				{
 					lsum = drive.TotalSize / 1024 / 1024;//MB,磁盘总大小
 					ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
-					label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
+					textBox1.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
 				}
 				else if (drive.DriveType == DriveType.Removable)//判断是否是移动磁盘 
 				{
@@ -109,11 +130,11 @@ namespace 磁盘编辑工具
 					{
 						lsum = drive.TotalSize / 1024 / 1024;//MB,磁盘总大小
 						ldr = drive.TotalFreeSpace / 1024 / 1024;//剩余大小
-						label6.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "\r\n" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
+						textBox1.Text += drive.Name + " 总空间  = " + lsum.ToString() + " MB" + "    剩余空间= " + ldr.ToString() + " MB" + "\r\n";
 					}
 					else
 					{
-						label6.Text += drive.Name + " 未知" + "\r\n";
+						textBox1.Text += drive.Name + " 未知" + "\r\n";
 						
 					}
 				}
@@ -212,6 +233,7 @@ namespace 磁盘编辑工具
 		{
 			string data = listView1.FocusedItem.SubItems[1].Text;//获取选中行的第一列的数据
 			string data1 = listView1.Items[0].SubItems[1].Text;//获取第0项第一列的数据
+			int data2 = listView1.Items.Count;//获取总项数
 		}
 
 

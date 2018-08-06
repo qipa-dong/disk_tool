@@ -14,7 +14,7 @@ namespace 磁盘编辑工具
 {
 	public partial class Form2 : Form
 	{
-		FileHelper FileBin = new FileHelper();
+		private FileHelper FileBin = new FileHelper();
 		//private FileInfo fi;
 		private listdata in_data = new listdata();
 
@@ -142,5 +142,6 @@ namespace 磁盘编辑工具
 			textBox1.Text = "";
 			numericUpDown3.Value = 0;
 		}
+
 	}
 }
