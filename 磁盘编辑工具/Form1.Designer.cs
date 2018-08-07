@@ -44,6 +44,8 @@
 			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.button2 = new System.Windows.Forms.Button();
+			this.button7 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// comboBox1
@@ -175,11 +177,31 @@
 			this.textBox1.Size = new System.Drawing.Size(485, 153);
 			this.textBox1.TabIndex = 19;
 			// 
+			// button2
+			// 
+			this.button2.Location = new System.Drawing.Point(514, 208);
+			this.button2.Name = "button2";
+			this.button2.Size = new System.Drawing.Size(89, 28);
+			this.button2.TabIndex = 20;
+			this.button2.Text = "地址查看";
+			this.button2.UseVisualStyleBackColor = true;
+			// 
+			// button7
+			// 
+			this.button7.Location = new System.Drawing.Point(514, 242);
+			this.button7.Name = "button7";
+			this.button7.Size = new System.Drawing.Size(89, 28);
+			this.button7.TabIndex = 21;
+			this.button7.Text = "格式化";
+			this.button7.UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(615, 417);
+			this.Controls.Add(this.button7);
+			this.Controls.Add(this.button2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button6);
 			this.Controls.Add(this.button5);
@@ -218,6 +240,8 @@
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;
 		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button button7;
 	}
 }
 
