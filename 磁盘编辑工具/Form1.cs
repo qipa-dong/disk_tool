@@ -37,47 +37,64 @@ namespace 磁盘编辑工具
 		{
 			byte[] WriteByte = new byte[512];
 			//Array.Clear(WriteByte, 0xff, WriteByte.Length);//需定义一个全为ff的数组
-			
-            string filename = listView1.Items[0].SubItems[6].Text;
-            uint fileStartAddr = Convert.ToUInt32(listView1.Items[0].SubItems[3].Text);
-			uint diskStartAddr = Convert.ToUInt32(listView1.Items[0].SubItems[4].Text);
-            uint filelen = Convert.ToUInt32(listView1.Items[0].SubItems[5].Text);
+			listdata execute_data = new listdata();
 
+			//if (DiskOpen == false)
+			//{
+			//	MessageBox.Show(this, "磁盘未打开", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
+			//	return;
+			//}
 
-			//写入磁盘
-			if (listView1.Items[0].SubItems[1].Text == "写入" ||
-				listView1.Items[0].SubItems[1].Text == "擦除")
+			for (int i = 0; i < listView1.CheckedItems.Count; i++)//遍历整个列表
 			{
-				if (filelen == 0)
+				if (listView1.CheckedItems[i].Checked)//判断是否复选
 				{
-					MessageBox.Show(this, "文件无内容或不存在", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-					return;
-				}
+					execute_data.full_name = listView1.Items[0].SubItems[0].Text;
+					execute_data.operating = listView1.Items[0].SubItems[1].Text;
+					execute_data.file_start = Convert.ToUInt32(listView1.Items[0].SubItems[3].Text);
+					execute_data.disk_start = Convert.ToUInt32(listView1.Items[0].SubItems[4].Text);
+					execute_data.data_size = Convert.ToUInt32(listView1.Items[0].SubItems[5].Text);
 
-				if (MessageBox.Show(this, "确定要写入文件？此操作无法撤销！", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-				{
-					return;
-				}
-
-				for (uint SurplusLen = 0; SurplusLen < filelen; SurplusLen += 512)
-				{
-					if(listView1.Items[0].SubItems[1].Text == "写入")
+					//写入磁盘
+					if (execute_data.operating == "写入" || execute_data.operating == "擦除")
 					{
-						WriteByte = FileBin.BinRead(filename, SurplusLen + fileStartAddr, 512);//读取数据
+						if (execute_data.data_size == 0 && execute_data.operating == "写入")
+						{
+							MessageBox.Show(this, "文件无内容或不存在", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
+							return;
+						}
+
+						if (MessageBox.Show(this, "确定要写入文件？此操作无法撤销！", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+						{
+							return;
+						}
+
+						for (uint SurplusLen = 0; SurplusLen < execute_data.data_size; SurplusLen += 512)
+						{
+							if (execute_data.operating == "写入")
+							{
+								WriteByte = FileBin.BinRead(execute_data.full_name, SurplusLen + execute_data.file_start, 512);//读取数据
+							}
+
+							cipan.WriteSector(WriteByte, SurplusLen / 512 + execute_data.disk_start);//将数据写入流
+							cipan.Refresh();//将当前流中的数据写入磁盘
+							progressBar1.Step = (int)(SurplusLen * 100 / execute_data.data_size);
+							progressBar1.PerformStep();
+						}
+						MessageBox.Show(this, "文件写入完成", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
+
 					}
+					else if (execute_data.operating == "读取")
+					{
 
-					cipan.WriteSector(WriteByte, SurplusLen / 512 + diskStartAddr);//将数据写入流
-					cipan.Refresh();//将当前流中的数据写入磁盘
-					progressBar1.Step = (int)(SurplusLen * 100 / filelen);
-					progressBar1.PerformStep();
+					}
 				}
-				MessageBox.Show(this, "文件写入完成", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-
 			}
-			else if (listView1.Items[0].SubItems[1].Text == "读取")
-			{
+			
 
-			}
+			
+
+			
 		}
 
 		private void Get_info()
@@ -134,11 +151,14 @@ namespace 磁盘编辑工具
         private void Button1_Click(object sender, EventArgs e)
         {
             tergetDisk = comboBox1.Text.Substring(0,2);
-            if (DiskOpen == false)
+            if (DiskOpen == false)//磁盘未打开
             {
                 if (cipan.OpenDisk(tergetDisk))
                 {
                     button1.Text = "磁盘" + comboBox1.Text.Substring(0, 2);
+					button2.Enabled = true;
+					button3.Enabled = true;
+					button7.Enabled = true;
                     DiskOpen = true;
                 }
                 else
@@ -150,6 +170,9 @@ namespace 磁盘编辑工具
             {
                 cipan.Close();
                 button1.Text = "打开磁盘";
+				button2.Enabled = false;
+				button3.Enabled = false;
+				button7.Enabled = false;
                 DiskOpen = false;
 				Get_info();//关闭磁盘时刷新磁盘信息
 			}
@@ -229,9 +252,9 @@ namespace 磁盘编辑工具
 		public string full_name;//文件全名（路径）
 		public string short_name;//短文件名
 		public string operating;//操作
-		public int file_start;//文件起始地址
-		public int disk_start;//磁盘起始地址
-		public int data_size;//数据大小
+		public uint file_start;//文件起始地址
+		public uint disk_start;//磁盘起始地址
+		public uint data_size;//数据大小
 	}
 	
 }

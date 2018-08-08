@@ -41,7 +41,6 @@
 			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.button4 = new System.Windows.Forms.Button();
-			this.button5 = new System.Windows.Forms.Button();
 			this.button6 = new System.Windows.Forms.Button();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.button2 = new System.Windows.Forms.Button();
@@ -149,15 +148,6 @@
 			this.button4.UseVisualStyleBackColor = true;
 			this.button4.Click += new System.EventHandler(this.Button4_Click);
 			// 
-			// button5
-			// 
-			this.button5.Location = new System.Drawing.Point(514, 174);
-			this.button5.Name = "button5";
-			this.button5.Size = new System.Drawing.Size(89, 28);
-			this.button5.TabIndex = 17;
-			this.button5.Text = "停止";
-			this.button5.UseVisualStyleBackColor = true;
-			// 
 			// button6
 			// 
 			this.button6.Location = new System.Drawing.Point(514, 106);
@@ -179,7 +169,8 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(514, 208);
+			this.button2.Enabled = false;
+			this.button2.Location = new System.Drawing.Point(514, 174);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(89, 28);
 			this.button2.TabIndex = 20;
@@ -188,7 +179,8 @@
 			// 
 			// button7
 			// 
-			this.button7.Location = new System.Drawing.Point(514, 242);
+			this.button7.Enabled = false;
+			this.button7.Location = new System.Drawing.Point(514, 208);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(89, 28);
 			this.button7.TabIndex = 21;
@@ -204,7 +196,6 @@
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.textBox1);
 			this.Controls.Add(this.button6);
-			this.Controls.Add(this.button5);
 			this.Controls.Add(this.button4);
 			this.Controls.Add(this.listView1);
 			this.Controls.Add(this.button3);
@@ -235,7 +226,6 @@
 		private System.Windows.Forms.ColumnHeader columnHeader4;
 		private System.Windows.Forms.ColumnHeader columnHeader5;
 		private System.Windows.Forms.Button button4;
-		private System.Windows.Forms.Button button5;
 		private System.Windows.Forms.Button button6;
 		private System.Windows.Forms.ColumnHeader columnHeader7;
 		private System.Windows.Forms.ColumnHeader columnHeader8;

@@ -27,9 +27,9 @@ namespace 磁盘编辑工具
 		{
 			if (textBox1.Text != "")
 			{
-				in_data.data_size = Convert.ToInt32(numericUpDown3.Value);//提取长度并转换为十进制
-				in_data.disk_start = Convert.ToInt32(numericUpDown2.Value);
-				in_data.file_start = Convert.ToInt32(numericUpDown1.Value);
+				in_data.data_size = Convert.ToUInt32(numericUpDown3.Value);//提取长度并转换为十进制
+				in_data.disk_start = Convert.ToUInt32(numericUpDown2.Value);
+				in_data.file_start = Convert.ToUInt32(numericUpDown1.Value);
 				//in_data.short_name = fi.Name;
 				//in_data.full_name = fi.FullName;
 				in_data.operating = comboBox1.Text;
