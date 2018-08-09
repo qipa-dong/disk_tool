@@ -36,7 +36,10 @@ namespace 磁盘编辑工具
 		private void Button3_Click(object sender, EventArgs e)
 		{
 			byte[] WriteByte = new byte[512];
-			//Array.Clear(WriteByte, 0xff, WriteByte.Length);//需定义一个全为ff的数组
+			for (uint i = 0; i < 512; i++ )
+			{
+				WriteByte[i] = 0xFF;
+			}
 			listdata execute_data = new listdata();
 
 			//if (DiskOpen == false)
@@ -45,15 +48,23 @@ namespace 磁盘编辑工具
 			//	return;
 			//}
 
+			if (MessageBox.Show(this, "确定要执行操作？此操作无法撤销！", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+			{
+				button3.Text = "执行";
+				return;
+			}
+
+			button3.Text = "停止";
+
 			for (int i = 0; i < listView1.CheckedItems.Count; i++)//遍历整个列表
 			{
 				if (listView1.CheckedItems[i].Checked)//判断是否复选
 				{
-					execute_data.full_name = listView1.Items[0].SubItems[0].Text;
-					execute_data.operating = listView1.Items[0].SubItems[1].Text;
-					execute_data.file_start = Convert.ToUInt32(listView1.Items[0].SubItems[3].Text);
-					execute_data.disk_start = Convert.ToUInt32(listView1.Items[0].SubItems[4].Text);
-					execute_data.data_size = Convert.ToUInt32(listView1.Items[0].SubItems[5].Text);
+					execute_data.full_name = listView1.Items[i].SubItems[0].Text;
+					execute_data.operating = listView1.Items[i].SubItems[1].Text;
+					execute_data.file_start = Convert.ToUInt32(listView1.Items[i].SubItems[3].Text);
+					execute_data.disk_start = Convert.ToUInt32(listView1.Items[i].SubItems[4].Text);
+					execute_data.data_size = Convert.ToUInt32(listView1.Items[i].SubItems[5].Text);
 
 					//写入磁盘
 					if (execute_data.operating == "写入" || execute_data.operating == "擦除")
@@ -61,13 +72,10 @@ namespace 磁盘编辑工具
 						if (execute_data.data_size == 0 && execute_data.operating == "写入")
 						{
 							MessageBox.Show(this, "文件无内容或不存在", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
-							return;
+							continue;
 						}
 
-						if (MessageBox.Show(this, "确定要写入文件？此操作无法撤销！", "提示信息：", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
-						{
-							return;
-						}
+						
 
 						for (uint SurplusLen = 0; SurplusLen < execute_data.data_size; SurplusLen += 512)
 						{
@@ -86,15 +94,17 @@ namespace 磁盘编辑工具
 					}
 					else if (execute_data.operating == "读取")
 					{
-
+						/*读取数据*/
+						for (uint SurplusLen = 0; SurplusLen < execute_data.data_size; SurplusLen += 512)
+						{
+							WriteByte = cipan.ReadSector(SurplusLen / 512 + execute_data.disk_start);
+							FileBin.Write(execute_data.full_name, SurplusLen / 512 + execute_data.disk_start, WriteByte);
+						}
+						
 					}
 				}
 			}
-			
-
-			
-
-			
+			button3.Text = "执行";
 		}
 
 		private void Get_info()
@@ -227,6 +237,7 @@ namespace 磁盘编辑工具
 				lvi.SubItems.Add(data.disk_start.ToString());
 				lvi.SubItems.Add(data.data_size.ToString());
 				lvi.SubItems.Add(data.full_name);
+				lvi.Checked = true;
 
 				listView1.Items.Add(lvi);//列表显示数据
 			}

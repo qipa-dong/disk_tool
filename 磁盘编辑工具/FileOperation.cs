@@ -11,19 +11,6 @@ namespace 文件操作类
             // TODO: Complete member initialization
         }
 
-        //#region 检测指定目录是否存在
-        ///// <summary>
-        ///// 判断文件是否存在
-        ///// </summary>
-        ///// <param name="filePath">文件全路径</param>
-        ///// <returns></returns>
-        //public uint OpenFile(string FileName)
-        //{
-        //    fs = new FileStream(FileName, FileMode.Open);
-        //    return 1;
-        //}
-        //#endregion
-
         /// <summary>
         /// 判断文件是否存在
         /// </summary>
@@ -141,33 +128,30 @@ namespace 文件操作类
 
 
         /// <summary>
-        /// 写文件
+        /// 写文件(512字节)
         /// </summary>
         /// <param name="filePath">文件路径</param>
+		/// <param name="seek">文件偏移</param>
         /// <param name="content">文件内容</param>
         /// <returns></returns>
-        public static bool Write(string filePath, string content)
+        public bool Write(string filePath, uint seek, byte[] content)
         {
-            if (!Exists(filePath) || content == null)
+            if (content == null)
             {
                 return false;
             }
 
-            //将文件信息读入流中
-            using (FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate))
-            {
-                lock (fs)//锁住流
-                {
-                    if (!fs.CanWrite)
-                    {
-                        throw new System.Security.SecurityException("文件filePath=" + filePath + "是只读文件不能写入!");
-                    }
-
-                    byte[] buffer = Encoding.Default.GetBytes(content);
-                    fs.Write(buffer, 0, buffer.Length);
-                    return true;
-                }
-            }
+			try
+			{
+				//创建文件  
+				FileStream fs = File.Create(filePath);
+				fs.Write(content, (int)seek, 512);
+				fs.Close();
+				fs.Dispose();
+			}
+			catch
+			{ }
+			return true;
         }
 
 
