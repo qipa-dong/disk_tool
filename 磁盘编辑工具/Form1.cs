@@ -60,7 +60,7 @@ namespace 磁盘编辑工具
 			{
 				if (listView1.CheckedItems[i].Checked)//判断是否复选
 				{
-					execute_data.full_name = listView1.Items[i].SubItems[0].Text;
+					execute_data.full_name = listView1.Items[i].SubItems[6].Text;
 					execute_data.operating = listView1.Items[i].SubItems[1].Text;
 					execute_data.file_start = Convert.ToUInt32(listView1.Items[i].SubItems[3].Text);
 					execute_data.disk_start = Convert.ToUInt32(listView1.Items[i].SubItems[4].Text);
@@ -74,8 +74,6 @@ namespace 磁盘编辑工具
 							MessageBox.Show(this, "文件无内容或不存在", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
 							continue;
 						}
-
-						
 
 						for (uint SurplusLen = 0; SurplusLen < execute_data.data_size; SurplusLen += 512)
 						{
@@ -99,7 +97,10 @@ namespace 磁盘编辑工具
 						{
 							WriteByte = cipan.ReadSector(SurplusLen / 512 + execute_data.disk_start);
 							FileBin.Write(execute_data.full_name, SurplusLen / 512 + execute_data.disk_start, WriteByte);
+							progressBar1.Step = (int)(SurplusLen * 100 / execute_data.data_size);
+							progressBar1.PerformStep();
 						}
+						MessageBox.Show(this, "磁盘读取完成", "提示信息", MessageBoxButtons.OK, MessageBoxIcon.Question);
 						
 					}
 				}
@@ -111,6 +112,8 @@ namespace 磁盘编辑工具
 		{
 			long lsum, ldr;
 			string disk_log ="磁盘信息\r\n";
+
+			log("");
 
 			comboBox1.Items.Clear();
 			foreach (DriveInfo drive in DriveInfo.GetDrives())
