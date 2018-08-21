@@ -79,11 +79,16 @@ namespace 磁盘编辑工具
 						{
 							if (execute_data.operating == "写入")
 							{
-								WriteByte = FileBin.BinRead(execute_data.full_name, SurplusLen + execute_data.file_start, 512);//读取数据
+								//读取数据
+								WriteByte = FileBin.BinRead(execute_data.full_name, SurplusLen + execute_data.file_start, 512);
 							}
+							//将数据写入流
+							cipan.WriteSector(WriteByte, SurplusLen / 512 + execute_data.disk_start);
 
-							cipan.WriteSector(WriteByte, SurplusLen / 512 + execute_data.disk_start);//将数据写入流
-							cipan.Refresh();//将当前流中的数据写入磁盘
+							//将当前流中的数据写入磁盘
+							cipan.Refresh();
+
+							//更新进度条
 							progressBar1.Step = (int)(SurplusLen * 100 / execute_data.data_size);
 							progressBar1.PerformStep();
 						}
@@ -95,8 +100,13 @@ namespace 磁盘编辑工具
 						/*读取数据*/
 						for (uint SurplusLen = 0; SurplusLen < execute_data.data_size; SurplusLen += 512)
 						{
+							//读取磁盘数据
 							WriteByte = cipan.ReadSector(SurplusLen / 512 + execute_data.disk_start);
+
+							//写入文件
 							FileBin.Write(execute_data.full_name, SurplusLen / 512 + execute_data.disk_start, WriteByte);
+
+							//更新进度条
 							progressBar1.Step = (int)(SurplusLen * 100 / execute_data.data_size);
 							progressBar1.PerformStep();
 						}
@@ -113,6 +123,7 @@ namespace 磁盘编辑工具
 			long lsum, ldr;
 			string disk_log ="磁盘信息\r\n";
 
+			//清空显示log
 			log("");
 
 			comboBox1.Items.Clear();

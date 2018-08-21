@@ -136,21 +136,31 @@ namespace 文件操作类
         /// <returns></returns>
         public bool Write(string filePath, uint seek, byte[] content)
         {
-            if (content == null)
-            {
-                return false;
-            }
-
 			try
 			{
-				//创建文件  
-				FileStream fs = File.Create(filePath);
-				fs.Write(content, (int)seek, 512);
-				fs.Close();
-				fs.Dispose();
+				if (content.Length != 512)
+					return false;
+
+				if (!File.Exists(filePath))
+				{
+					//创建文件  
+					FileStream fs = File.Create(filePath);
+				}
+
+				//打开文件
+				FileStream sr = File.Create(filePath);
+
+				//设置偏移
+				sr.Write(content, (int)seek, 512);
+
+				//同步并关闭文件
+				sr.Close();
+				sr.Dispose();
 			}
-			catch
-			{ }
+			catch (Exception ex)
+			{
+				return false;
+			}
 			return true;
         }
 
