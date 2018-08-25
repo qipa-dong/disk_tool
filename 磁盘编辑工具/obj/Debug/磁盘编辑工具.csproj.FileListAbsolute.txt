@@ -19,3 +19,4 @@ C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘�
 C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.exe
 C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.pdb
 C:\Users\lidong\Documents\GitHub\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.csprojAssemblyReference.cache
+D:\software\cmder\tmp_git\disk_tool\磁盘编辑工具\obj\Debug\磁盘编辑工具.Form3.resources

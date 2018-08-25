@@ -169,13 +169,13 @@
 			// 
 			// button2
 			// 
-			this.button2.Enabled = false;
 			this.button2.Location = new System.Drawing.Point(514, 174);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(89, 28);
 			this.button2.TabIndex = 20;
 			this.button2.Text = "地址查看";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// button7
 			// 

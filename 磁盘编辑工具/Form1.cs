@@ -180,7 +180,6 @@ namespace 磁盘编辑工具
                 if (cipan.OpenDisk(tergetDisk))
                 {
                     button1.Text = "磁盘" + comboBox1.Text.Substring(0, 2);
-					button2.Enabled = true;
 					button3.Enabled = true;
 					button7.Enabled = true;
                     DiskOpen = true;
@@ -194,7 +193,6 @@ namespace 磁盘编辑工具
             {
                 cipan.Close();
                 button1.Text = "打开磁盘";
-				button2.Enabled = false;
 				button3.Enabled = false;
 				button7.Enabled = false;
                 DiskOpen = false;
@@ -265,6 +263,12 @@ namespace 磁盘编辑工具
 			string data = listView1.FocusedItem.SubItems[1].Text;//获取选中行的第一列的数据
 			string data1 = listView1.Items[0].SubItems[1].Text;//获取第0项第一列的数据
 			int data2 = listView1.Items.Count;//获取总项数
+		}
+
+		private void button2_Click(object sender, EventArgs e)
+		{
+			Form3 testDialog = new Form3();
+			testDialog.ShowDialog(this);//弹出窗口
 		}
 
 
