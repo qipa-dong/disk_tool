@@ -16,7 +16,7 @@ namespace 磁盘编辑工具
 	{
 		private FileHelper FileBin = new FileHelper();
 		//private FileInfo fi;
-		private listdata in_data = new listdata();
+		private Listdata in_data = new Listdata();
 
 		public Form2()
 		{
@@ -49,7 +49,7 @@ namespace 磁盘编辑工具
 			Close();
 		}
 
-		public listdata get_data()
+		public Listdata get_data()
 		{
 			return in_data;
 		}

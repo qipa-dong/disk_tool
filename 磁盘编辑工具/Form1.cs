@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using SDcard;
@@ -15,11 +9,11 @@ namespace 磁盘编辑工具
 {
 	public partial class Form1 : Form
 	{
-        SDUtils cipan = new SDUtils();
+		private SDUtils cipan = new SDUtils();
 		private FileHelper FileBin = new FileHelper();
         private bool DiskOpen = false;//磁盘状态，标志磁盘是否打开
-        string tergetDisk = "";//目标磁盘
-		int list_num = 0;
+		private string tergetDisk = "";//目标磁盘
+		private int list_num = 0;
 
 		public Form1()
 		{
@@ -40,7 +34,7 @@ namespace 磁盘编辑工具
 			{
 				WriteByte[i] = 0xFF;
 			}
-			listdata execute_data = new listdata();
+			Listdata execute_data = new Listdata();
 
 			//if (DiskOpen == false)
 			//{
@@ -83,7 +77,7 @@ namespace 磁盘编辑工具
 								WriteByte = FileBin.BinRead(execute_data.full_name, SurplusLen + execute_data.file_start, 512);
 							}
 							//将数据写入流
-							cipan.WriteSector(WriteByte, SurplusLen / 512 + execute_data.disk_start);
+							cipan.WriteSector(WriteByte, (SurplusLen / 512) + execute_data.disk_start);
 
 							//将当前流中的数据写入磁盘
 							cipan.Refresh();
@@ -101,10 +95,10 @@ namespace 磁盘编辑工具
 						for (uint SurplusLen = 0; SurplusLen < execute_data.data_size; SurplusLen += 512)
 						{
 							//读取磁盘数据
-							WriteByte = cipan.ReadSector(SurplusLen / 512 + execute_data.disk_start);
+							WriteByte = cipan.ReadSector((SurplusLen / 512) + execute_data.disk_start);
 
 							//写入文件
-							FileBin.Write(execute_data.full_name, SurplusLen / 512 + execute_data.disk_start, WriteByte);
+							FileBin.Write(execute_data.full_name, (SurplusLen / 512) + execute_data.disk_start, WriteByte);
 
 							//更新进度条
 							progressBar1.Step = (int)(SurplusLen * 100 / execute_data.data_size);
@@ -124,7 +118,7 @@ namespace 磁盘编辑工具
 			string disk_log ="磁盘信息\r\n";
 
 			//清空显示log
-			log("");
+			Log("");
 
 			comboBox1.Items.Clear();
 			foreach (DriveInfo drive in DriveInfo.GetDrives())
@@ -156,12 +150,12 @@ namespace 磁盘编辑工具
 				else
 					comboBox1.Items.Add(drive.Name + "未知");
 			}
-			log(disk_log);
+			Log(disk_log);
 			comboBox1.SelectedIndex = 0;//设置默认值
 		}
 
 		//打印log信息
-		private void log(string data)
+		private void Log(string data)
 		{
 			if(data == "")
 			{
@@ -237,7 +231,7 @@ namespace 磁盘编辑工具
 
 			if (testDialog.ShowDialog(this) == DialogResult.OK)//弹出窗口
 			{
-				listdata data = new listdata();
+				Listdata data = new Listdata();
 				data = testDialog.get_data();
 
 				list_num++;
@@ -276,7 +270,7 @@ namespace 磁盘编辑工具
 		//m = listView1.CheckedItems.Count;//或去选中项
 	}
 
-	public struct listdata
+	public struct Listdata
 	{
 		public string full_name;//文件全名（路径）
 		public string short_name;//短文件名
